@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-db-init
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS games (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(100),
+      category VARCHAR(50),
+      price NUMERIC(10, 2),
+      release_date DATE
+    );
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15
+        env:
+        - name: POSTGRES_DB
+          value: gamesdb
+        - name: POSTGRES_USER
+          value: gameuser
+        - name: POSTGRES_PASSWORD
+          value: gamepass
+        volumeMounts:
+        - name: db-data
+          mountPath: /var/lib/postgresql/data
+        - name: db-init
+          mountPath: /docker-entrypoint-initdb.d/
+      volumes:
+      - name: db-data
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+      - name: db-init
+        configMap:
+          name: game-db-init
+          items:
+          - key: init.sql
+            path: init.sql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game-service
+  template:
+    metadata:
+      labels:
+        app: game-service
+    spec:
+      containers:
+      - name: game-service
+        image: game-service
+        imagePullPolicy: Never
+        env:
+        - name: DB_HOST
+          value: postgres
+        - name: DB_NAME
+          value: gamesdb
+        - name: DB_USER
+          value: gameuser
+        - name: DB_PASS
+          value: gamepass
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-service
+spec:
+  type: NodePort
+  selector:
+    app: game-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30008
+
