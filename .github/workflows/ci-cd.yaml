@@ -56,13 +56,17 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+      - name: Create EC2 PEM file from base64
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" | base64 -d > ec2_key.pem
+          chmod 600 ec2_key.pem
+
       - name: SSH & deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.EC2_HOST }}           # ← Your EC2 public IP
-          port: 22                                # ← Default SSH port
+          host: ${{ secrets.EC2_HOST }}
           username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}         # ← Base64-encoded private key
+          key_path: ec2_key.pem       # use decoded key here
           script: |
             export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
             kubectl set image deployment/lugx-frontend \
@@ -77,6 +81,7 @@ jobs:
             kubectl set image deployment/order-service \
               order-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-order-service:latest
             kubectl rollout status deployment/order-service
+
 
   integration-tests:
     needs: deploy
