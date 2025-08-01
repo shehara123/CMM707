@@ -72,15 +72,38 @@ jobs:
           key_path: ec2_key.pem               # ← path to the decoded key
           script: |
             export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+            cd ~/CMM707/lugx-cloud/k8s
+
+            # Apply all deployments before setting images
+            kubectl apply -f analytics/analytics-deployment.yaml
+            kubectl apply -f analytics/analytics-service.yaml
+            kubectl apply -f analytics/analytics-ingress.yaml
+
+            kubectl apply -f frontend/frontend-deployment.yaml
+            kubectl apply -f frontend/frontend-service.yaml
+            kubectl apply -f frontend/frontend-ingress.yaml
+
+            kubectl apply -f game/game-deployment.yaml
+            kubectl apply -f game/game-service.yaml
+            kubectl apply -f game/game-ingress.yaml
+
+            kubectl apply -f order/order-deployment.yaml
+            kubectl apply -f order/order-service.yaml
+            kubectl apply -f order/order-ingress.yaml
+
+            # Now do the rolling updates
             kubectl set image deployment/lugx-frontend \
               lugx-frontend=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-frontend:latest
             kubectl rollout status deployment/lugx-frontend
+
             kubectl set image deployment/analytics-service \
               analytics-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-analytics-service:latest
             kubectl rollout status deployment/analytics-service
+
             kubectl set image deployment/game-service \
               game-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-game-service:latest
             kubectl rollout status deployment/game-service
+
             kubectl set image deployment/order-service \
               order-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-order-service:latest
             kubectl rollout status deployment/order-service
