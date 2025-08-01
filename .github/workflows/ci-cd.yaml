@@ -59,10 +59,10 @@ jobs:
       - name: SSH & deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.EC2_HOST }}
-          port: 22
+          host: ${{ secrets.EC2_HOST }}           # ← Your EC2 public IP
+          port: 22                                # ← Default SSH port
           username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_SSH_KEY }}         # ← Base64-encoded private key
           script: |
             export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
             kubectl set image deployment/lugx-frontend \
