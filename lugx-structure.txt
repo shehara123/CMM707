@@ -1,0 +1,421 @@
+[4.0K]  .
+├── [4.0K]  .git
+│   ├── [  64]  COMMIT_EDITMSG
+│   ├── [  96]  FETCH_HEAD
+│   ├── [  21]  HEAD
+│   ├── [  41]  ORIG_HEAD
+│   ├── [4.0K]  branches
+│   ├── [ 261]  config
+│   ├── [  73]  description
+│   ├── [4.0K]  hooks
+│   │   ├── [ 478]  applypatch-msg.sample
+│   │   ├── [ 896]  commit-msg.sample
+│   │   ├── [4.5K]  fsmonitor-watchman.sample
+│   │   ├── [ 189]  post-update.sample
+│   │   ├── [ 424]  pre-applypatch.sample
+│   │   ├── [1.6K]  pre-commit.sample
+│   │   ├── [ 416]  pre-merge-commit.sample
+│   │   ├── [1.3K]  pre-push.sample
+│   │   ├── [4.8K]  pre-rebase.sample
+│   │   ├── [ 544]  pre-receive.sample
+│   │   ├── [1.5K]  prepare-commit-msg.sample
+│   │   ├── [2.7K]  push-to-checkout.sample
+│   │   └── [3.6K]  update.sample
+│   ├── [ 15K]  index
+│   ├── [4.0K]  info
+│   │   └── [ 240]  exclude
+│   ├── [4.0K]  logs
+│   │   ├── [1.8K]  HEAD
+│   │   └── [4.0K]  refs
+│   │       ├── [4.0K]  heads
+│   │       │   └── [1.2K]  main
+│   │       └── [4.0K]  remotes
+│   │           └── [4.0K]  origin
+│   │               └── [ 658]  main
+│   ├── [4.0K]  objects
+│   │   ├── [4.0K]  00
+│   │   │   └── [ 412]  73f4d97ee1eb3685806137efb6f468fe33d19d
+│   │   ├── [4.0K]  02
+│   │   │   └── [ 39K]  132719cebeec2505d2992c4acd82078b4cf1c0
+│   │   ├── [4.0K]  04
+│   │   │   └── [6.3K]  a11464f85175b9605529aaf07a52b294536b0f
+│   │   ├── [4.0K]  06
+│   │   │   └── [103K]  19fc1c747e6278bbd51a30de28b3fcccbd848a
+│   │   ├── [4.0K]  07
+│   │   │   └── [ 345]  6800e2fb232ebab07eef4e3ca92bbb906d4367
+│   │   ├── [4.0K]  08
+│   │   │   └── [110K]  9a7366ba3cd7ee7e704f8ae063bb4700fce5a8
+│   │   ├── [4.0K]  09
+│   │   │   └── [ 163]  6945d825204774c5bb2d7786415f1e8d6f3b80
+│   │   ├── [4.0K]  0b
+│   │   │   └── [ 134]  c9c0085b48e05003d43b05c4da90170408858b
+│   │   ├── [4.0K]  0e
+│   │   │   └── [ 11K]  9392d8e7f68a66d88c692fd4cf30cd9bdc78ff
+│   │   ├── [4.0K]  12
+│   │   │   └── [ 214]  00115270657bdd66d845e8dc7056de176be215
+│   │   ├── [4.0K]  16
+│   │   │   └── [ 277]  a921d70aae64f6bc17e487215a9a87431d82ca
+│   │   ├── [4.0K]  18
+│   │   │   └── [ 120]  bbe8d30010aa4ebe8e36f5ef4a0def06c21997
+│   │   ├── [4.0K]  19
+│   │   │   └── [ 259]  584695927adc065751f2266337594d663fd5c3
+│   │   ├── [4.0K]  1a
+│   │   │   └── [ 148]  4552f0bacf3a900df395d6f8a01d3e3e1a5a7d
+│   │   ├── [4.0K]  1b
+│   │   │   ├── [ 748]  5438767d78dc8acb9c1fe8eb62a27f88f335cd
+│   │   │   └── [ 797]  c471b3247b1d6b08202ed4c1673dc0a43d5bd4
+│   │   ├── [4.0K]  1f
+│   │   │   ├── [4.9K]  2ef7cfabc9cf1d117d7a88f3a63cadbb40cca3
+│   │   │   ├── [ 23K]  8ddab827030fbc81b7cb4441ec4c9809a48bc1
+│   │   │   └── [ 32K]  93466410c893110ef8917bdde3401c57a3155f
+│   │   ├── [4.0K]  21
+│   │   │   └── [ 159]  89b01d2295b065de062f9d28059b0b917de03b
+│   │   ├── [4.0K]  23
+│   │   │   └── [  54]  ae2dfed9b59afdd367a34f356133d40886ee20
+│   │   ├── [4.0K]  26
+│   │   │   └── [  70]  9c8910daf65db59df119003f540fe8d182d6a7
+│   │   ├── [4.0K]  29
+│   │   │   ├── [ 60K]  4ee966c8b135ea3e299b7ca49c450e78870b59
+│   │   │   └── [ 786]  59c505b07915b6e60f8aa44d28a01da9a08b10
+│   │   ├── [4.0K]  2a
+│   │   │   └── [ 154]  d6fc94bb365b9f1194ebd81ee1cd161be39454
+│   │   ├── [4.0K]  2b
+│   │   │   └── [ 27K]  95e3c61cd8f7f0b7887a8151207b204d576e14
+│   │   ├── [4.0K]  2d
+│   │   │   └── [  46]  25678d4c8bca69f39f659dbca2088bd067d474
+│   │   ├── [4.0K]  33
+│   │   │   └── [ 24K]  c27e9d11d977425338cb9dd335d94c64b69486
+│   │   ├── [4.0K]  34
+│   │   │   └── [  52]  7081e01ceac91d569373100ba2d6ca1a72bbf4
+│   │   ├── [4.0K]  37
+│   │   │   └── [ 33K]  2913c784697462a2a9ae8123c88fa0339e1dcf
+│   │   ├── [4.0K]  3b
+│   │   │   └── [ 155]  79fb3037cdbac6c00462c8f78f6fcecb107e25
+│   │   ├── [4.0K]  3c
+│   │   │   └── [ 41K]  fd3aa014b4d9116c520f47a4049ea9b208aef5
+│   │   ├── [4.0K]  3d
+│   │   │   └── [ 102]  f36167fad57ea49558d9522112a354a08e259e
+│   │   ├── [4.0K]  41
+│   │   │   └── [ 200]  0b0609b4b082da67771c94d427072403c40357
+│   │   ├── [4.0K]  42
+│   │   │   └── [ 261]  b6b65b2e36e114de2aab2255c461c649f39e49
+│   │   ├── [4.0K]  47
+│   │   │   ├── [ 27K]  2d33129545e9d0a038d662163effa8987da720
+│   │   │   └── [148K]  6364752c5fa7ad9aa10f471dc955aac3d3cf34
+│   │   ├── [4.0K]  48
+│   │   │   └── [ 860]  21e01084ab8a550fbba7934ebc53246165b89b
+│   │   ├── [4.0K]  49
+│   │   │   └── [5.5K]  cd436cf92cc28645e5a8be4b1973683c95c537
+│   │   ├── [4.0K]  4a
+│   │   │   └── [ 809]  05cd4c96e74d4d1fd4b03b4e2e2ed04364ed4f
+│   │   ├── [4.0K]  4b
+│   │   │   └── [ 541]  e77df362993cca5aac1051ba100845cb150cf7
+│   │   ├── [4.0K]  50
+│   │   │   └── [113K]  210eb2a1620ef4c4104c16ee7fac16a2c83987
+│   │   ├── [4.0K]  54
+│   │   │   └── [ 27K]  4d28df79fe7e6757328f7ecddf37a9aac17322
+│   │   ├── [4.0K]  55
+│   │   │   └── [1.2K]  49bbddf1ba28961e3b6ee16dbbc66213ee1f88
+│   │   ├── [4.0K]  57
+│   │   │   └── [  23]  b2819d2d94271a7d216c12cf6a6becd0df54e0
+│   │   ├── [4.0K]  5c
+│   │   │   └── [ 791]  b5e03399e5ecb5d6efd083e2fb9d6806badcaf
+│   │   ├── [4.0K]  63
+│   │   │   └── [ 663]  a2c2c272240671d9b4e0315e05d13b62102cc0
+│   │   ├── [4.0K]  65
+│   │   │   └── [ 912]  1664fac3e8c67e30383ae44c5a295eeb921572
+│   │   ├── [4.0K]  66
+│   │   │   └── [ 19K]  46a325f661d1f548a5917e8d18560e01bba8d4
+│   │   ├── [4.0K]  68
+│   │   │   └── [  81]  6c547d3c9f3246c8ac0c966be6af9efa6d5999
+│   │   ├── [4.0K]  6c
+│   │   │   └── [  65]  5df16d94e4bfe3192baf35ef957ede5deb61cb
+│   │   ├── [4.0K]  70
+│   │   │   └── [2.2K]  1b693e8742c075e6c6b2f7f9c5e7ce389563fd
+│   │   ├── [4.0K]  75
+│   │   │   └── [2.8K]  29ccb84124a8a537d016d1e5ae10eb7d5b19ca
+│   │   ├── [4.0K]  76
+│   │   │   ├── [5.7K]  a559577d4f759fff6af1249b4a277f352822d5
+│   │   │   └── [ 125]  ccae4eb61c1345c0eb8953e5d56d210d26df14
+│   │   ├── [4.0K]  7a
+│   │   │   └── [ 246]  531dd4ce8e74dfaeef8b2e1d4a2e870bfe52f4
+│   │   ├── [4.0K]  7d
+│   │   │   └── [  78]  d0acba04c7d4be3e49f94076f25309072e82e9
+│   │   ├── [4.0K]  7f
+│   │   │   └── [  57]  0b218f752c1f7ba95df90f9a18aad534d36304
+│   │   ├── [4.0K]  80
+│   │   │   └── [ 24K]  4caa5b88a97f8c41353266fc4d11b2c142fda0
+│   │   ├── [4.0K]  81
+│   │   │   └── [3.4K]  3b6e64e7f197d78353b922c305bb659e428dc7
+│   │   ├── [4.0K]  8a
+│   │   │   └── [ 22K]  62aac3b8e9105766f3873443758b7ddf18d838
+│   │   ├── [4.0K]  91
+│   │   │   └── [ 20K]  f32fba2630bb3c0c3402d6ea6a066408542fbc
+│   │   ├── [4.0K]  93
+│   │   │   ├── [ 103]  5fe661fd417eb5014875e57e4d7eb9bc7c464c
+│   │   │   └── [1.7K]  d70819077a815a12d24e1ba38efc40c8c11a05
+│   │   ├── [4.0K]  94
+│   │   │   └── [ 194]  887f89649647ed47b913fa8ee6f41d820f93c2
+│   │   ├── [4.0K]  95
+│   │   │   └── [2.8K]  10108bc11b9628eac8b03e2eb322f656d0e49f
+│   │   ├── [4.0K]  9c
+│   │   │   └── [1.9K]  a41e6d55339cc157884444730c9c945d454d83
+│   │   ├── [4.0K]  9d
+│   │   │   └── [1.8K]  0204afe6b5d5a4ea0212cf08011e4b42b01cca
+│   │   ├── [4.0K]  a2
+│   │   │   └── [ 52M]  f2e4924901f0ffa7d6f134d62bd01d19a6748a
+│   │   ├── [4.0K]  a3
+│   │   │   ├── [1.5K]  073be4bf8075f89a39dca1d454d9d4fac1fdc1
+│   │   │   └── [  71]  25b811277c2534fc763a041aa939ffd1a44c58
+│   │   ├── [4.0K]  a5
+│   │   │   └── [ 48K]  29d883c76f026420aed8dbcbd4c245ed9a7c0b
+│   │   ├── [4.0K]  a6
+│   │   │   └── [  81]  58a46618cbc3084b905e283b11016d80a27ffa
+│   │   ├── [4.0K]  a8
+│   │   │   └── [  53]  9e758b9635fe1ebc90461b507544e66fae03f4
+│   │   ├── [4.0K]  ac
+│   │   │   └── [ 981]  30b8ec10a619579898fca0cb90cf948c7c6838
+│   │   ├── [4.0K]  ae
+│   │   │   ├── [ 226]  05a9f47150218fce47d3e12bba8828f6512ac0
+│   │   │   └── [ 15K]  3a8967469df0902ac5daec7acf99a381d08d47
+│   │   ├── [4.0K]  b1
+│   │   │   └── [ 21K]  68147a333750d661d25306e435646507311762
+│   │   ├── [4.0K]  b2
+│   │   │   └── [ 28K]  8d0cb901bad0f66eb812115ba60b2ddacc3b33
+│   │   ├── [4.0K]  b4
+│   │   │   ├── [122K]  21518638bfb4725d72cc0980d8dcaf6074abe7
+│   │   │   └── [ 789]  ce27b30035d0b875ce653b2b3d4ab0c96da336
+│   │   ├── [4.0K]  ba
+│   │   │   └── [ 109]  ccab7f617f0b1383736a2e0f9da47f7758c7be
+│   │   ├── [4.0K]  c2
+│   │   │   ├── [ 154]  0f2a6279a889da31907f2591d806f8e640d8f3
+│   │   │   └── [ 36K]  38058233e52b40204084ad86dfa7b4d6a5c6b6
+│   │   ├── [4.0K]  c3
+│   │   │   └── [ 25K]  27c2362dd4f8eb980f6908c49f8ef014d19568
+│   │   ├── [4.0K]  c4
+│   │   │   ├── [ 456]  12b6b7c329265fc06aadb72519aa53dc7de2f6
+│   │   │   ├── [ 35K]  3565452792f19d2cf2340266dbecb82f2a0571
+│   │   │   └── [ 22K]  6eb76fd6bcb5464bbde88170dec044f655a1fa
+│   │   ├── [4.0K]  c6
+│   │   │   ├── [ 12K]  0929ab518b8d151392299872745b86e16b76d5
+│   │   │   └── [ 59K]  9014a680aea69b663d1fa5a5654fe8dcfbc6b8
+│   │   ├── [4.0K]  c9
+│   │   │   └── [ 72K]  116b20f2978a6f04e8281c8f3196d6a797297a
+│   │   ├── [4.0K]  ca
+│   │   │   └── [ 253]  ce39ea821cd1a9052cdaee480119a7ccf4cb17
+│   │   ├── [4.0K]  cc
+│   │   │   └── [  59]  8ef3a82521751b6bbe43e5089dddb26827386f
+│   │   ├── [4.0K]  cd
+│   │   │   └── [ 22K]  a9887369772d68e0efb30ef892290007e2a727
+│   │   ├── [4.0K]  ce
+│   │   │   └── [  55]  a4b8da7c8587ae686d91a1b6314c756961dc0a
+│   │   ├── [4.0K]  cf
+│   │   │   └── [1.2K]  241f3af1f6dd63b94f7c7ee04155cf2ac9001a
+│   │   ├── [4.0K]  d2
+│   │   │   └── [ 198]  de68e791103b64e2649b64318eb2253abddd42
+│   │   ├── [4.0K]  d8
+│   │   │   └── [1.4K]  fd0cb7ce44f6dd377ff9ddb7bbb2caa90fe864
+│   │   ├── [4.0K]  e1
+│   │   │   └── [2.8K]  af7bb83feb047e5ac0a282e81d2d29d9fbd997
+│   │   ├── [4.0K]  e3
+│   │   │   └── [ 27K]  e8a6494716d9fb98cfde32ef67a74227bd2969
+│   │   ├── [4.0K]  e5
+│   │   │   └── [  49]  18c75219bfbeac41291822a204fba590da4098
+│   │   ├── [4.0K]  e7
+│   │   │   ├── [ 43K]  23b6e1de6ea8d035717f60abd8431302c5a1e1
+│   │   │   └── [1.1K]  d1f5ba5159179db45b98ddc4ff7b33f3ea72b7
+│   │   ├── [4.0K]  e9
+│   │   │   └── [1.5K]  2c0655b5ac3ec2bfbdd015294ddcbe054fb783
+│   │   ├── [4.0K]  ea
+│   │   │   └── [ 199]  621ae0c03fa2a727007abdc91a0e91fd814ac7
+│   │   ├── [4.0K]  eb
+│   │   │   └── [ 416]  21ee0d99964c7e818217b6d5dea9f9d20e4450
+│   │   ├── [4.0K]  f2
+│   │   │   ├── [ 198]  606ebf28d447657d5a4dfad6992309f092cb3e
+│   │   │   └── [1.8K]  b67ac629e09e9143d201e9e7ba6a83ee02d66e
+│   │   ├── [4.0K]  f6
+│   │   │   └── [1.9K]  90eede7c58ac516d02a4bcf9a9f0961d552593
+│   │   ├── [4.0K]  f9
+│   │   │   └── [  53]  de3490864020bed25dd679ead7738ba24e4779
+│   │   ├── [4.0K]  fb
+│   │   │   └── [ 78K]  f9e44d80c149c822db0b575dbfdc4625744aa4
+│   │   ├── [4.0K]  fd
+│   │   │   └── [ 98K]  90fe8e067b4e75012c097a088073dd1d3e75a4
+│   │   ├── [4.0K]  fe
+│   │   │   └── [  51]  7ef74f2cb1d6405f34e46c99a6eb398aa290e7
+│   │   ├── [4.0K]  info
+│   │   └── [4.0K]  pack
+│   └── [4.0K]  refs
+│       ├── [4.0K]  heads
+│       │   └── [  41]  main
+│       ├── [4.0K]  remotes
+│       │   └── [4.0K]  origin
+│       │       └── [  41]  main
+│       └── [4.0K]  tags
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       └── [3.1K]  ci-cd.yaml
+├── [  30]  .gitignore
+├── [   8]  README.md
+├── [4.0K]  frontend
+│   ├── [  57]  Dockerfile
+│   ├── [4.0K]  assets
+│   │   ├── [4.0K]  css
+│   │   │   ├── [ 57K]  animate.css
+│   │   │   ├── [  98]  animate.css:Zone.Identifier
+│   │   │   ├── [7.1K]  flex-slider.css
+│   │   │   ├── [  98]  flex-slider.css:Zone.Identifier
+│   │   │   ├── [120K]  fontawesome.css
+│   │   │   ├── [  98]  fontawesome.css:Zone.Identifier
+│   │   │   ├── [4.8K]  owl.css
+│   │   │   ├── [  98]  owl.css:Zone.Identifier
+│   │   │   ├── [ 32K]  templatemo-lugx-gaming.css
+│   │   │   └── [  98]  templatemo-lugx-gaming.css:Zone.Identifier
+│   │   ├── [4.0K]  images
+│   │   │   ├── [ 34K]  banner-bg.jpg
+│   │   │   ├── [  98]  banner-bg.jpg:Zone.Identifier
+│   │   │   ├── [ 60K]  banner-image.jpg
+│   │   │   ├── [  98]  banner-image.jpg:Zone.Identifier
+│   │   │   ├── [1.7K]  caption-dec.png
+│   │   │   ├── [  98]  caption-dec.png:Zone.Identifier
+│   │   │   ├── [ 29K]  categories-01.jpg
+│   │   │   ├── [  98]  categories-01.jpg:Zone.Identifier
+│   │   │   ├── [ 23K]  categories-02.jpg
+│   │   │   ├── [  98]  categories-02.jpg:Zone.Identifier
+│   │   │   ├── [ 34K]  categories-03.jpg
+│   │   │   ├── [  98]  categories-03.jpg:Zone.Identifier
+│   │   │   ├── [ 24K]  categories-04.jpg
+│   │   │   ├── [  98]  categories-04.jpg:Zone.Identifier
+│   │   │   ├── [ 28K]  categories-05.jpg
+│   │   │   ├── [  98]  categories-05.jpg:Zone.Identifier
+│   │   │   ├── [ 72K]  cta-bg.jpg
+│   │   │   ├── [  98]  cta-bg.jpg:Zone.Identifier
+│   │   │   ├── [1.8K]  featured-01.png
+│   │   │   ├── [  98]  featured-01.png:Zone.Identifier
+│   │   │   ├── [2.1K]  featured-02.png
+│   │   │   ├── [  98]  featured-02.png:Zone.Identifier
+│   │   │   ├── [2.0K]  featured-03.png
+│   │   │   ├── [  98]  featured-03.png:Zone.Identifier
+│   │   │   ├── [1.5K]  featured-04.png
+│   │   │   ├── [  98]  featured-04.png:Zone.Identifier
+│   │   │   ├── [4.7K]  footer-bg.jpg
+│   │   │   ├── [  98]  footer-bg.jpg:Zone.Identifier
+│   │   │   ├── [3.1K]  logo.png
+│   │   │   ├── [  98]  logo.png:Zone.Identifier
+│   │   │   ├── [ 11K]  page-heading-bg.jpg
+│   │   │   ├── [  98]  page-heading-bg.jpg:Zone.Identifier
+│   │   │   ├── [111K]  single-game.jpg
+│   │   │   ├── [  98]  single-game.jpg:Zone.Identifier
+│   │   │   ├── [ 20K]  top-game-01.jpg
+│   │   │   ├── [  98]  top-game-01.jpg:Zone.Identifier
+│   │   │   ├── [ 16K]  top-game-02.jpg
+│   │   │   ├── [  98]  top-game-02.jpg:Zone.Identifier
+│   │   │   ├── [ 25K]  top-game-03.jpg
+│   │   │   ├── [  98]  top-game-03.jpg:Zone.Identifier
+│   │   │   ├── [ 28K]  top-game-04.jpg
+│   │   │   ├── [  98]  top-game-04.jpg:Zone.Identifier
+│   │   │   ├── [ 22K]  top-game-05.jpg
+│   │   │   ├── [  98]  top-game-05.jpg:Zone.Identifier
+│   │   │   ├── [ 12K]  top-game-06.jpg
+│   │   │   ├── [  98]  top-game-06.jpg:Zone.Identifier
+│   │   │   ├── [ 36K]  trending-01.jpg
+│   │   │   ├── [  98]  trending-01.jpg:Zone.Identifier
+│   │   │   ├── [ 42K]  trending-02.jpg
+│   │   │   ├── [  98]  trending-02.jpg:Zone.Identifier
+│   │   │   ├── [ 33K]  trending-03.jpg
+│   │   │   ├── [  98]  trending-03.jpg:Zone.Identifier
+│   │   │   ├── [ 44K]  trending-04.jpg
+│   │   │   └── [  98]  trending-04.jpg:Zone.Identifier
+│   │   ├── [4.0K]  js
+│   │   │   ├── [3.4K]  counter.js
+│   │   │   ├── [  98]  counter.js:Zone.Identifier
+│   │   │   ├── [2.6K]  custom.js
+│   │   │   ├── [  98]  custom.js:Zone.Identifier
+│   │   │   ├── [ 35K]  isotope.min.js
+│   │   │   ├── [  98]  isotope.min.js:Zone.Identifier
+│   │   │   ├── [ 91K]  owl-carousel.js
+│   │   │   └── [  98]  owl-carousel.js:Zone.Identifier
+│   │   └── [4.0K]  webfonts
+│   │       ├── [177K]  fa-brands-400.ttf
+│   │       ├── [  98]  fa-brands-400.ttf:Zone.Identifier
+│   │       ├── [103K]  fa-brands-400.woff2
+│   │       ├── [  98]  fa-brands-400.woff2:Zone.Identifier
+│   │       ├── [ 59K]  fa-regular-400.ttf
+│   │       ├── [  98]  fa-regular-400.ttf:Zone.Identifier
+│   │       ├── [ 23K]  fa-regular-400.woff2
+│   │       ├── [  98]  fa-regular-400.woff2:Zone.Identifier
+│   │       ├── [291K]  fa-solid-900.ttf
+│   │       ├── [  98]  fa-solid-900.ttf:Zone.Identifier
+│   │       ├── [122K]  fa-solid-900.woff2
+│   │       ├── [  98]  fa-solid-900.woff2:Zone.Identifier
+│   │       ├── [ 10K]  fa-v4compatibility.ttf
+│   │       ├── [  98]  fa-v4compatibility.ttf:Zone.Identifier
+│   │       ├── [4.9K]  fa-v4compatibility.woff2
+│   │       └── [  98]  fa-v4compatibility.woff2:Zone.Identifier
+│   ├── [6.8K]  contact.html
+│   ├── [  98]  contact.html:Zone.Identifier
+│   ├── [ 553]  frontend-deployment.yaml
+│   ├── [ 15K]  index.html
+│   ├── [  98]  index.html:Zone.Identifier
+│   ├── [4.0K]  js
+│   │   └── [1.7K]  analytics.js
+│   ├── [127M]  minikube-linux-amd64
+│   ├── [9.5K]  product-details.html
+│   ├── [  98]  product-details.html:Zone.Identifier
+│   ├── [ 11K]  shop.html
+│   ├── [  98]  shop.html:Zone.Identifier
+│   ├── [3.0K]  sturcture.txt
+│   └── [4.0K]  vendor
+│       ├── [4.0K]  bootstrap
+│       │   ├── [4.0K]  css
+│       │   │   ├── [216K]  bootstrap.min.css
+│       │   │   └── [  98]  bootstrap.min.css:Zone.Identifier
+│       │   └── [4.0K]  js
+│       │       ├── [ 59K]  bootstrap.min.js
+│       │       └── [  98]  bootstrap.min.js:Zone.Identifier
+│       └── [4.0K]  jquery
+│           ├── [276K]  jquery.js
+│           ├── [  98]  jquery.js:Zone.Identifier
+│           ├── [ 85K]  jquery.min.js
+│           ├── [  98]  jquery.min.js:Zone.Identifier
+│           ├── [129K]  jquery.min.map
+│           ├── [  98]  jquery.min.map:Zone.Identifier
+│           ├── [222K]  jquery.slim.js
+│           ├── [  98]  jquery.slim.js:Zone.Identifier
+│           ├── [ 68K]  jquery.slim.min.js
+│           ├── [  98]  jquery.slim.min.js:Zone.Identifier
+│           ├── [103K]  jquery.slim.min.map
+│           └── [  98]  jquery.slim.min.map:Zone.Identifier
+├── [4.0K]  game-service
+│   ├── [ 163]  Dockerfile
+│   ├── [4.0K]  db
+│   │   └── [ 163]  init.sql
+│   ├── [2.2K]  game-deployment.yaml
+│   ├── [1.1K]  main.py
+│   └── [  33]  requirements.txt
+├── [1.7K]  ingress.yaml
+├── [4.0K]  k8s
+│   └── [4.0K]  analytics
+│       ├── [ 637]  analytics-deployment.yaml
+│       ├── [ 472]  analytics-ingress.yaml
+│       ├── [ 160]  analytics-service.yaml
+│       └── [ 954]  clickhouse-single.yaml
+├── [   0]  lugx-structure.txt
+├── [4.0K]  order-service
+│   ├── [ 163]  Dockerfile
+│   ├── [4.0K]  db
+│   │   └── [ 167]  init.sql
+│   ├── [1.5K]  main.py
+│   ├── [2.3K]  order-deployment.yaml
+│   └── [  33]  requirements.txt
+├── [ 188]  prometheus-patch.yaml
+├── [4.0K]  scripts
+│   └── [ 804]  integration-tests.sh
+└── [4.0K]  services
+    └── [4.0K]  analytics-service
+        ├── [ 196]  Dockerfile
+        ├── [4.0K]  app
+        │   └── [2.0K]  main.py
+        └── [  69]  requirements.txt
+
+138 directories, 280 files
