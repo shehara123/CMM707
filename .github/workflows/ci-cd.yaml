@@ -2,14 +2,19 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main ]      # build & deploy on every push to main
+  schedule:                 # run only the integration-test job daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:        # allow manual trigger in GitHub UI
 
 env:
   DOCKER_REGISTRY: docker.io
-  DOCKER_ORG: sheharaa
+  DOCKER_ORG: sheharaa      # <— your Docker Hub namespace
 
 jobs:
+# ---------------------------------------------------
+# 1) BUILD & PUSH all service images to Docker Hub
+# ---------------------------------------------------
   build-and-push:
     runs-on: ubuntu-latest
     steps:
@@ -41,19 +46,22 @@ jobs:
       - name: Build & push game-service
         uses: docker/build-push-action@v4
         with:
-          context: ./game-service
+          context: ./services/game-service          # ← adjust folder if needed
           push: true
           tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-game-service:latest
 
       - name: Build & push order-service
         uses: docker/build-push-action@v4
         with:
-          context: ./order-service
+          context: ./services/order-service         # ← adjust folder if needed
           push: true
           tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-order-service:latest
 
+# ---------------------------------------------------
+# 2) DEPLOY to K3s on EC2 with rolling updates
+# ---------------------------------------------------
   deploy:
-    needs: build-and-push
+    needs: build-and-push           # run only if build job succeeds
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -61,9 +69,9 @@ jobs:
       - name: Set up kubectl
         uses: azure/setup-kubectl@v3
         with:
-          version: latest
+          version: v1.33.3          # match your cluster version
 
-      - name: Configure Kubeconfig
+      - name: Configure kubeconfig for EC2-K3s
         run: |
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > $HOME/.kube/config
@@ -92,14 +100,25 @@ jobs:
             order-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-order-service:latest
           kubectl rollout status deployment/order-service
 
+# ---------------------------------------------------
+# 3) INTEGRATION TESTS
+#    • runs after each deploy
+#    • runs once daily via the cron trigger above
+# ---------------------------------------------------
   integration-tests:
-    needs: deploy
+    # If triggered by push, wait for deploy; if by cron, run standalone
+    needs: [deploy]
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run integration tests
+      - name: Set up test dependencies
+        run: |
+          sudo apt-get -y install curl jq           # or whatever your tests need
+
+      - name: Run integration test suite
         run: |
           cd ./scripts
-          ./integration-tests.sh
+          bash integration-tests.sh
 
