@@ -118,8 +118,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run integration tests
+      - name: Run integration tests (verbose)
         run: |
+          set -euxo pipefail       # ← Print each command + exit on errors
           cd ./scripts
-          ./integration-tests.sh
+          bash -x ./integration-tests.sh  # ← bash -x for line-by-line tracing
 
