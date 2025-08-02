@@ -5,10 +5,10 @@ echo "=== Frontend smoke test ==="
 curl -sf http://localhost:8080/ | grep -q "<title>Lugx Gaming" && echo "→ Frontend OK"
 
 echo "=== Analytics smoke test ==="
-curl -sf -X POST http://localhost:8080/analytics/track \
-     -H "Content-Type: application/json" \
-     -d '{"eventType":"ci_test","page":"/ci"}'
-echo "→ Analytics POST OK"
+curl -sf -X POST http://localhost:8081/track \
+  -H 'Content-Type: application/json' \
+  -d '{"eventType":"ci_test","page":"/ci"}' \
+  && echo "→ Analytics OK" || echo "→ Analytics FAILED"
 
 echo "=== ClickHouse data check ==="
 kubectl exec deploy/clickhouse -- \
