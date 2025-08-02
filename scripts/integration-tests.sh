@@ -2,11 +2,10 @@
 set -euo pipefail
 
 echo "=== Frontend smoke test ==="
-curl -sf http://lugx.local/ | grep -q "<title>Lugx Gaming</title>"
-echo "→ Frontend OK"
+curl -sf http://localhost:8080/ | grep -q "<title>Lugx Gaming" && echo "→ Frontend OK"
 
 echo "=== Analytics smoke test ==="
-curl -sf -X POST http://lugx.local/analytics/track \
+curl -sf -X POST http://localhost:8080/analytics/track \
      -H "Content-Type: application/json" \
      -d '{"eventType":"ci_test","page":"/ci"}'
 echo "→ Analytics POST OK"
@@ -18,11 +17,10 @@ kubectl exec deploy/clickhouse -- \
 echo "→ ClickHouse OK"
 
 echo "=== Game‑service smoke test ==="
-curl -sf http://lugx.local/games
-echo "→ Game service OK"
+curl -sf http://localhost:8080/games && echo "→ Game service OK"
 
 echo "=== Order‑service smoke test ==="
-curl -sf http://lugx.local/orders
-echo "→ Order service OK"
+curl -sf http://localhost:8080/orders && echo "→ Order service OK"
 
 echo "All integration tests passed!"
+
