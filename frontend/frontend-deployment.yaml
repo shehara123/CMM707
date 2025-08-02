@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: lugx-frontend
-        image: lugx-frontend
+        image: docker.io/sheharaa/lugx-frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
