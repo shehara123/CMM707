@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: analytics
-        image: lugx/analytics-service:latest
+        image: docker.io/sheharaa/lugx-analytics-service:latest
         imagePullPolicy: Always
         env:
         - { name: CLICKHOUSE_HOST, value: "clickhouse" }
