@@ -116,11 +116,20 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: SSH & run integration tests
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.EC2_HOST }}
+          port:     22
+          username: ubuntu
+          key:      ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
-      - name: Run integration tests (verbose)
-        run: |
-          set -euxo pipefail       # ← Print each command + exit on errors
-          cd ./scripts
-          bash -x ./integration-tests.sh  # ← bash -x for line-by-line tracing
+            # Make lugx.local resolve to localhost inside EC2
+            echo "127.0.0.1 lugx.local" | sudo tee -a /etc/hosts
 
+            # Run your test suite with full tracing
+            cd ~/CMM707/scripts
+            set -euxo pipefail
+            bash -x ./integration-tests.sh
