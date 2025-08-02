@@ -71,6 +71,7 @@ jobs:
             game-service/*.yaml,
             order-service/*.yaml,
             k8s/analytics/*.yaml,
+            scripts/integration-tests.sh,
             ingress.yaml
           target: ~/CMM707
 
