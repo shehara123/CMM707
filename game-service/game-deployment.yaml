@@ -92,7 +92,7 @@ spec:
       containers:
       - name: game-service
         image: game-service
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         env:
         - name: DB_HOST
           value: postgres

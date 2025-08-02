@@ -15,7 +15,7 @@ spec:
       containers:
       - name: lugx-frontend
         image: lugx-frontend
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---

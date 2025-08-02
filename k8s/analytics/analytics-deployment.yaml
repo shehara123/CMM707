@@ -10,7 +10,7 @@ spec:
       containers:
       - name: analytics
         image: lugx/analytics-service:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
         - { name: CLICKHOUSE_HOST, value: "clickhouse" }
         - { name: CLICKHOUSE_PORT, value: "8123" }
