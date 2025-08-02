@@ -67,12 +67,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           source: |
-            frontend/*.yaml,
-            game-service/*.yaml,
-            order-service/*.yaml,
-            k8s/analytics/*.yaml,
-            scripts/integration-tests.sh,
-            ingress.yaml
+            "frontend/*.yaml,game-service/*.yaml,order-service/*.yaml,k8s/analytics/*.yaml,scripts/integration-tests.sh,ingress.yaml"
           target: ~/CMM707
 
       - name: SSH & deploy to EC2
