@@ -86,29 +86,32 @@ jobs:
           script: |
             set -euxo pipefail
 
-            # Ensure K3s is running (after stop/start it might not be ready yet)
+            # Ensure K3s + containerd are running
             if ! sudo systemctl is-active --quiet k3s; then
               sudo systemctl start k3s
-              sleep 8
+            fi
+            if ! sudo systemctl is-active --quiet containerd; then
+              sudo systemctl start containerd
             fi
 
-            # Ensure kubeconfig is available for 'ubuntu'
+            # Prepare kubeconfig for 'ubuntu'
             sudo mkdir -p /home/ubuntu/.kube
             sudo cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
             sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
             chmod 600 /home/ubuntu/.kube/config
             export KUBECONFIG=/home/ubuntu/.kube/config
 
-            # Quick sanity checks (avoid --short for older kubectl)
-            which kubectl || true
-            kubectl version --client --output=yaml || true
-            kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'; echo
+            # Wait for API to be ready
+            for i in {1..30}; do
+              if kubectl get nodes >/dev/null 2>&1; then break; fi
+              sleep 2
+            done
             kubectl get nodes -o wide
             kubectl get ns
 
             cd ~/CMM707
 
-            # Apply updated manifests
+            # Apply (idempotent)
             kubectl apply -f frontend/frontend-deployment.yaml
             kubectl apply -f game-service/game-deployment.yaml
             kubectl apply -f order-service/order-deployment.yaml
@@ -118,22 +121,34 @@ jobs:
             kubectl apply -f k8s/analytics/analytics-service.yaml
             kubectl apply -f k8s/analytics/analytics-ingress.yaml
 
-            # Perform rolling updates and wait for them
+            # Update images
             kubectl set image deployment/lugx-frontend \
               lugx-frontend=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-frontend:latest
-            kubectl rollout status deployment/lugx-frontend --timeout=5m
-
             kubectl set image deployment/game-service \
               game-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-game-service:latest
-            kubectl rollout status deployment/game-service --timeout=5m
-
             kubectl set image deployment/order-service \
               order-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-order-service:latest
-            kubectl rollout status deployment/order-service --timeout=5m
-
             kubectl set image deployment/analytics-service \
               analytics-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-analytics-service:latest
-            kubectl rollout status deployment/analytics-service --timeout=5m
+
+            # Wait for rollouts with helpful debugging on failure
+            wait_rollout() {
+              local deploy="$1"
+              if ! kubectl rollout status "deployment/${deploy}" --timeout=5m; then
+                echo "=== DEBUG: ${deploy} rollout failed ==="
+                kubectl describe deployment "${deploy}" || true
+                kubectl get pods -l app="${deploy}" -o wide || true
+                # If your labels differ, also try by name prefix:
+                kubectl get pods -A --sort-by=.metadata.creationTimestamp | tail -n 50 || true
+                kubectl get events --sort-by=.lastTimestamp -A | tail -n 100 || true
+                exit 1
+              fi
+            }
+
+            wait_rollout lugx-frontend
+            wait_rollout game-service
+            wait_rollout order-service
+            wait_rollout analytics-service
 
   integration-tests:
     needs: deploy
@@ -150,22 +165,20 @@ jobs:
           script: |
             set -euxo pipefail
 
+            # Ensure cluster is up and kubeconfig present
             if ! sudo systemctl is-active --quiet k3s; then
               sudo systemctl start k3s
-              sleep 8
             fi
-
             sudo mkdir -p /home/ubuntu/.kube
             sudo cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
             sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
             chmod 600 /home/ubuntu/.kube/config
             export KUBECONFIG=/home/ubuntu/.kube/config
 
-            # Make lugx.local resolve to localhost inside EC2 (for ingress tests)
+            # Resolve lugx.local inside EC2 for ingress tests
             grep -q "lugx.local" /etc/hosts || echo "127.0.0.1 lugx.local" | sudo tee -a /etc/hosts
 
             # Optional quick check
-            kubectl version --client --output=yaml || true
             kubectl get pods -A || true
 
             cd ~/CMM707/scripts
