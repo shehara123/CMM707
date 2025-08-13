@@ -59,6 +59,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Copy updated manifests/scripts to EC2
       - name: Copy updated manifests to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -66,6 +67,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
+          # comma-separated list is supported by this action
           source: |
             frontend/*.yaml,
             game-service/*.yaml,
@@ -75,6 +77,7 @@ jobs:
             ingress.yaml
           target: ~/CMM707
 
+      # Run kubectl ON the EC2 host (fix kubeconfig permissions first)
       - name: SSH & deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -82,8 +85,22 @@ jobs:
           port: 22
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          script_stop: true
           script: |
-            export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+            set -euxo pipefail
+
+            # Ensure kubeconfig is available for 'ubuntu'
+            sudo mkdir -p /home/ubuntu/.kube
+            sudo cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
+            sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+            chmod 600 /home/ubuntu/.kube/config
+            export KUBECONFIG=/home/ubuntu/.kube/config
+
+            # Quick sanity check
+            kubectl version --short
+            kubectl get nodes
+            kubectl get ns
+
             cd ~/CMM707
 
             # Apply updated manifests
@@ -96,22 +113,22 @@ jobs:
             kubectl apply -f k8s/analytics/analytics-service.yaml
             kubectl apply -f k8s/analytics/analytics-ingress.yaml
 
-            # Perform rolling update
+            # Perform rolling updates and wait for them
             kubectl set image deployment/lugx-frontend \
               lugx-frontend=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-frontend:latest
-            kubectl rollout status deployment/lugx-frontend
+            kubectl rollout status deployment/lugx-frontend --timeout=5m
 
             kubectl set image deployment/game-service \
               game-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-game-service:latest
-            kubectl rollout status deployment/game-service
+            kubectl rollout status deployment/game-service --timeout=5m
 
             kubectl set image deployment/order-service \
               order-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-order-service:latest
-            kubectl rollout status deployment/order-service
+            kubectl rollout status deployment/order-service --timeout=5m
 
             kubectl set image deployment/analytics-service \
               analytics-service=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_ORG }}/lugx-analytics-service:latest
-            kubectl rollout status deployment/analytics-service
+            kubectl rollout status deployment/analytics-service --timeout=5m
 
   integration-tests:
     needs: deploy
@@ -124,13 +141,22 @@ jobs:
           port:     22
           username: ubuntu
           key:      ${{ secrets.EC2_SSH_KEY }}
+          script_stop: true
           script: |
-            export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-
-            # Make lugx.local resolve to localhost inside EC2
-            echo "127.0.0.1 lugx.local" | sudo tee -a /etc/hosts
-
-            # Run your test suite with full tracing
-            cd ~/CMM707/scripts
             set -euxo pipefail
+
+            # Ensure kubeconfig for tests too
+            sudo mkdir -p /home/ubuntu/.kube
+            sudo cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
+            sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+            chmod 600 /home/ubuntu/.kube/config
+            export KUBECONFIG=/home/ubuntu/.kube/config
+
+            # Make lugx.local resolve to localhost inside EC2 (for ingress tests)
+            if ! grep -q "lugx.local" /etc/hosts; then
+              echo "127.0.0.1 lugx.local" | sudo tee -a /etc/hosts
+            fi
+
+            # Run the test suite
+            cd ~/CMM707/scripts
             bash -x ./integration-tests.sh
